@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/widgets/suggest_card.dart';
 
 import 'bloc/home_bloc.dart';
 import 'bloc/home_event.dart';
@@ -73,8 +74,8 @@ class _HomepagecontentState extends State<Homepagecontent> {
             decoration: const InputDecoration(
               hintText: "Search by issuer Name or ISIN",
               hintStyle: TextStyle(fontSize: 12,color: Color(0XFF99A1AF)),
-              prefixIcon: Icon(Icons.search, size: 16), // Better size
-              contentPadding: EdgeInsets.symmetric(vertical: 12), // Aligns text & icon
+              prefixIcon: Icon(Icons.search, size: 16),
+              contentPadding: EdgeInsets.symmetric(vertical: 12),
             ),
           ),
         ),
@@ -94,8 +95,11 @@ class _HomepagecontentState extends State<Homepagecontent> {
                 ),
               ),
             ),
-            SizedBox( // ✅ Replace Expanded with fixed height
-              height: 216, // Set a specific height based on your layout
+            Container(
+              height: 216,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   if (state is HomeLoading) {
@@ -108,21 +112,7 @@ class _HomepagecontentState extends State<Homepagecontent> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       itemCount: state.items.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                          height: 72,
-                          padding: EdgeInsets.all(16),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFFFFFF),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Text(
-                              state.items[index],
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        );
+                        return SuggestedItemCard(text: state.items[index]);
                       },
                       separatorBuilder: (context, index) => const SizedBox(height: 0),
                     );
@@ -132,26 +122,9 @@ class _HomepagecontentState extends State<Homepagecontent> {
                   return const SizedBox.shrink();
                 },
               ),
-              // ListView.separated(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   itemCount: 8,
-              //   itemBuilder: (context, index) {
-              //     return Container(
-              //       height: 72,
-              //       width: double.infinity,
-              //       decoration: BoxDecoration(
-              //         color: Color(0XFFFFFFFF),
-              //         borderRadius: BorderRadius.circular(8),
-              //       ),
-              //       child: Center(child: Text('Item ${index + 1}')),
-              //     );
-              //   },
-              //   separatorBuilder: (context, index) => const SizedBox(height: 0),
-              // ),
             ),
           ],
         )
-
       ],
     );
   }
