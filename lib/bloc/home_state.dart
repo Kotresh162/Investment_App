@@ -1,15 +1,35 @@
-abstract class HomeState {}
+import '../models/company_model.dart';
 
-class HomeInitial extends HomeState {}
+// abstract class HomeState {}
+//
+// class HomeInitial extends HomeState {}
+//
+// class HomeLoading extends HomeState {}
+//
+// class HomeLoaded extends HomeState {
+//   final List<String> items;
+//   HomeLoaded(this.items);
+// }
+//
+// class HomeError extends HomeState {
+//   final String message;
+//   HomeError(this.message);
+// }
 
-class HomeLoading extends HomeState {}
+abstract class CompanyState {}
 
-class HomeLoaded extends HomeState {
-  final List<String> items;
-  HomeLoaded(this.items);
+class CompanyInitial extends CompanyState {}
+
+class CompanyLoading extends CompanyState {}
+
+class CompanyLoaded extends CompanyState {
+  final List<Company> companies;
+
+  CompanyLoaded(this.companies);
 }
 
-class HomeError extends HomeState {
+class CompanyError extends CompanyState {
   final String message;
-  HomeError(this.message);
+
+  CompanyError(this.message);
 }

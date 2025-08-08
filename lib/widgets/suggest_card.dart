@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../models/company_model.dart';
 
 class SuggestedItemCard extends StatelessWidget {
-  final String text;
+  final Company cmp;
 
-  const SuggestedItemCard({super.key, required this.text});
+  const SuggestedItemCard({super.key, required this.cmp});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,12 @@ class SuggestedItemCard extends StatelessWidget {
         color: const Color(0xFFFFFFFF),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             spacing: 10,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 width: 40,
@@ -28,27 +32,27 @@ class SuggestedItemCard extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                child: const CircleAvatar(
+                child: CircleAvatar(
                   radius: 20, // 40 - 2*border = 36 → radius = 18
-                  backgroundImage: NetworkImage('https://cdn.brandfetch.io/idVluv2fZa/w/200/h/200/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B'),
+                  backgroundImage: NetworkImage(cmp.logo),
                   ),
                 ),
               Column(
-                // spacing: 2,
+                spacing: 2,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RichText(
                     text: TextSpan(
                       style: const TextStyle(color: Colors.black, fontSize: 16),
                       children: [
-                        TextSpan(text: text.substring(0, text.length - 4),style: TextStyle(
+                        TextSpan(text: cmp.isin.substring(0, cmp.isin.length - 4),style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: Colors.black.withOpacity(0.5),
                           letterSpacing: 1,
                         )),
                         TextSpan(
-                          text: text.substring(text.length - 4),
+                          text: cmp.isin.substring(cmp.isin.length - 4),
                           style: const TextStyle(fontWeight: FontWeight.w600,fontSize: 14),
                         ),
                       ],
@@ -58,7 +62,7 @@ class SuggestedItemCard extends StatelessWidget {
                     text: TextSpan(
                       style: const TextStyle(fontSize: 10, color: Colors.black),
                       children: [
-                        const TextSpan(text: "4.5 "), // rating
+                        TextSpan(text: cmp.rating), // rating
                         WidgetSpan(
                           alignment: PlaceholderAlignment.middle,
                           child: Padding(
@@ -66,7 +70,7 @@ class SuggestedItemCard extends StatelessWidget {
                             child: Icon(Icons.circle, size: 4, color: Colors.black54),
                           ),
                         ),
-                        const TextSpan(text: "Excellent"), // text after the dot
+                        TextSpan(text: cmp.companyName), // text after the dot
                       ],
                     ),
                   )
@@ -74,7 +78,12 @@ class SuggestedItemCard extends StatelessWidget {
               )
             ],
           ),
-
+          GestureDetector(
+            onTap: (){
+              print("done");
+            },
+            child: const Icon(Icons.chevron_right),
+          )
         ],
       ),
     );

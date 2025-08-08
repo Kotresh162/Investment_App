@@ -1,8 +1,12 @@
-abstract class HomeEvent {}
+// abstract class HomeEvent {}
+//
+// class LoadItems extends HomeEvent {}
+//
+// class SearchItems extends HomeEvent {
+//   final String query;
+//   SearchItems(this.query);
+// }
 
-class LoadItems extends HomeEvent {}
+abstract class CompanyEvent {}
 
-class SearchItems extends HomeEvent {
-  final String query;
-  SearchItems(this.query);
-}
+class FetchCompanies extends CompanyEvent {}
