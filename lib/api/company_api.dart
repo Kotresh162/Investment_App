@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:untitled/models/company_details.dart';
 import '../models/company_model.dart';
 
 class CompanyRepository {
@@ -14,5 +15,22 @@ class CompanyRepository {
       throw Exception('Failed to fetch companies');
     }
   }
+
+  Future<CompanyDetail> fetchCompanyDetails() async {
+    final url = Uri.parse('https://eo61q3zd4heiwke.m.pipedream.net/');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final decoded = json.decode(response.body);
+      print("data loaded");
+      return CompanyDetail.fromJson(decoded);
+    } else {
+      throw Exception(
+        'Failed to fetch company details: ${response.statusCode}',
+      );
+    }
+  }
+
+
 
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/widgets/suggest_card.dart';
 
-import 'api/company_list_api.dart';
+import 'api/company_api.dart';
 import 'bloc/home_bloc/home_bloc.dart';
 import 'bloc/home_bloc/home_event.dart';
 import 'bloc/home_bloc/home_state.dart';

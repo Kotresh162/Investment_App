@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'home_event.dart';
 import 'home_state.dart';
-import '../../api/company_list_api.dart';
+import '../../api/company_api.dart';
 
 class CompanyBloc extends Bloc<CompanyEvent, CompanyState> {
   final CompanyRepository repository;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/widgets/plan_details.dart';
 
 enum SelectedTab { details, prosCons }
 
@@ -72,7 +73,13 @@ class PlanDetailsPage extends StatelessWidget {
                             height: 60,
                             width: 60,
                             decoration: const BoxDecoration(
-                              color: Colors.blue,
+                              // color: Colors.blue,
+                              image: const DecorationImage(
+                                image: NetworkImage(
+                                  'https://cdn.brandfetch.io/idVluv2fZa/w/200/h/200/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B',
+                                ),
+                                fit: BoxFit.cover, // or BoxFit.contain depending on need
+                              ),
                             ),
                           ),
                           const SizedBox(height: 12),
@@ -202,27 +209,7 @@ Widget _buildTabButton(BuildContext context, String label, SelectedTab tab, Sele
 Widget _buildTabContent(BuildContext context,SelectedTab tab) {
   switch (tab) {
     case SelectedTab.details:
-      return Container(
-        child: Column(
-          spacing: 24,
-          children: [
-            Container(
-              height: 252,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
-            ),
-            Container(
-              height: 758,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
-            )
-          ],
-        ),
-      );
+      return buildCustomLayout(context);
     case SelectedTab.prosCons:
       return const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
