@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/widgets/plan_details.dart';
+import 'package:untitled/widgets/pros_cons_card.dart';
 import '../models/company_details.dart';
 
 enum SelectedTab { details, prosCons }
@@ -40,7 +41,7 @@ class CardDetail extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                _buildTabContent(context, selectedTab),
+                _buildTabContent(context, selectedTab,detail),
               ],
             ),
           );
@@ -80,19 +81,20 @@ class CardDetail extends StatelessWidget {
     );
   }
 
-  Widget _buildTabContent(BuildContext context,SelectedTab tab) {
+  Widget _buildTabContent(BuildContext context,SelectedTab tab,CompanyDetail details) {
     switch (tab) {
       case SelectedTab.details:
-        return buildCustomLayout(context);
+        return buildCustomLayout(context,details.issuerDetails);
       case SelectedTab.prosCons:
-        return const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Pros:\n- Fast\n- Efficient"),
-            SizedBox(height: 8),
-            Text("Cons:\n- Expensive\n- Complex"),
-          ],
-        );
+        return prosConsCard(context,details.prosAndCons);
+        // return const Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     Text("Pros:\n- Fast\n- Efficient"),
+        //     SizedBox(height: 8),
+        //     Text("Cons:\n- Expensive\n- Complex"),
+        //   ],
+        // );
     }
   }
 

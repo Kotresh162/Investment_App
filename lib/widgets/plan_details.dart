@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:untitled/models/company_details.dart';
 
-Widget buildCustomLayout(BuildContext context) {
+Widget buildCustomLayout(BuildContext context,IssuerDetails insDetails) {
   return Container(
     padding: const EdgeInsets.all(16),
     child: Column(
@@ -57,9 +58,9 @@ Widget buildCustomLayout(BuildContext context) {
                 child: Column(
                   spacing: 32,
                   children: [
-                    cardBuild("Issuer Name","Type of Issuer","Sector"),
-                    cardBuild("Industry","Issuer nature","Corporate Identity Number (CIN)"),
-                    cardBuild("Name of the Lead Manager","Registrar","Name of Debenture Trustee"),
+                    cardBuild("Issuer Name","Type of Issuer","Sector",insDetails.issuerName,insDetails.typeOfIssuer,insDetails.sector),
+                    cardBuild("Industry","Issuer nature","Corporate Identity Number (CIN)",insDetails.industry,insDetails.issuerNature,insDetails.cin),
+                    cardBuild("Name of the Lead Manager","Registrar","Name of Debenture Trustee",insDetails.leadManager,insDetails.registrar,insDetails.debentureTrustee),
                   ],
                 ),
               )
@@ -71,8 +72,8 @@ Widget buildCustomLayout(BuildContext context) {
   );
 }
 
-Widget cardBuild(String text1, String text2, String text3) {
-  return Container(
+Widget cardBuild(String text1, String text2, String text3,String ans1,String ans2,String ans3) {
+  return SizedBox(
     height: 195,
     width: 310,
     child: Column(
@@ -88,7 +89,7 @@ Widget cardBuild(String text1, String text2, String text3) {
               fontSize: 12,
               color: Color(0XFF1D4ED8)
             ),),
-            Text(text1,style: TextStyle(
+            Text(ans1,style: TextStyle(
               color: Color(0XFF111827),
               fontSize: 14,
               fontWeight: FontWeight.bold,
@@ -104,7 +105,7 @@ Widget cardBuild(String text1, String text2, String text3) {
                 fontSize: 12,
                 color: Color(0XFF1D4ED8)
             ),),
-            Text(text2,style: TextStyle(
+            Text(ans2,style: TextStyle(
               color: Color(0XFF111827),
               fontSize: 14,
               fontWeight: FontWeight.bold,
@@ -120,7 +121,7 @@ Widget cardBuild(String text1, String text2, String text3) {
                 fontSize: 12,
                 color: Color(0XFF1D4ED8)
             ),),
-            Text(text3,style: TextStyle(
+            Text(ans3,style: TextStyle(
               color: Color(0XFF111827),
               fontSize: 14,
               fontWeight: FontWeight.bold,

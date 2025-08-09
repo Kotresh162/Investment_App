@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/widgets/plan_details.dart';
-
 import 'api/company_api.dart';
 import 'card_detail.dart';
 import 'cubit/comapny_cubit.dart';
 import 'cubit/comapny_state.dart';
-import 'models/company_details.dart';
 
 
 class PlanDetailsPage extends StatelessWidget {
@@ -23,7 +20,7 @@ class PlanDetailsPage extends StatelessWidget {
             } else if (state is CompanyDetailError) {
               return Center(child: Text("Error: ${state.message}"));
             } else if (state is CompanyDetailData) {
-              print(state.detail.companyName);
+              // print(state.detail.companyName);
               final details = state.detail;
               return CustomScrollView(
                 slivers: [
@@ -43,17 +40,11 @@ class PlanDetailsPage extends StatelessWidget {
                             elevation: 0,
                             backgroundColor: Colors.transparent,
                             automaticallyImplyLeading: false,
-                            leading: Container(
-                              height: 36,
-                              width: 36,
-                              margin: const EdgeInsets.only(left: 8),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                shape: BoxShape.rectangle,
-                              ),
+                            leading: CircleAvatar(
+                              radius: 18,
                               child: IconButton(
                                 icon: const Icon(
-                                    Icons.arrow_back, color: Colors.white),
+                                    Icons.arrow_back, color: Colors.black),
                                 onPressed: () {
                                   print("back");
                                 },
@@ -160,29 +151,6 @@ class PlanDetailsPage extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: CardDetail(detail: details),
                   )
-
-                  // SliverToBoxAdapter(
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                  //     child: Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         SingleChildScrollView(
-                  //           scrollDirection: Axis.horizontal,
-                  //           child: Row(
-                  //             spacing: 24,
-                  //             children: [
-                  //               _buildTabButton(context, "ISIN Analysis", SelectedTab.details, selectedTab),
-                  //               _buildTabButton(context, "Pros & Cons", SelectedTab.prosCons, selectedTab),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //         const SizedBox(height: 12),
-                  //         _buildTabContent(context,selectedTab),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               );
             }
