@@ -23,6 +23,7 @@ class CompanyRepository {
     if (response.statusCode == 200) {
       final decoded = json.decode(response.body);
       print("data loaded");
+      // print(decoded["company_name"]);
       return CompanyDetail.fromJson(decoded);
     } else {
       throw Exception(
