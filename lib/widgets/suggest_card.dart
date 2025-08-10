@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/company_model.dart';
+import '../plan_details_page.dart';
 
 class SuggestedItemCard extends StatelessWidget {
   final Company cmp;
@@ -81,6 +82,12 @@ class SuggestedItemCard extends StatelessWidget {
           GestureDetector(
             onTap: (){
               print("done");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PlanDetailsPage(),
+                ),
+              );
             },
             child: const Icon(Icons.chevron_right),
           )

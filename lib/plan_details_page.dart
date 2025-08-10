@@ -47,6 +47,7 @@ class PlanDetailsPage extends StatelessWidget {
                                     Icons.arrow_back, color: Colors.black),
                                 onPressed: () {
                                   print("back");
+                                  Navigator.pop(context);
                                 },
                               ),
                             ),

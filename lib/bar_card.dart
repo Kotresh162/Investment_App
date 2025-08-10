@@ -92,13 +92,8 @@ Widget _buildFinanceTabButton(BuildContext context, String label, FinanceTab tab
 Widget _buildFinTabContent(BuildContext context,FinanceTab tab, Financial finDetails) {
   switch (tab) {
     case FinanceTab.ebitda:
-      // return buildChart(context,finDetails.ebitda,3);
-      return buildChart();
+      return buildChart(finDetails.ebitda);
     case FinanceTab.revenue:
-      // return buildChart(context,finDetails.revenue,3);
-      // return buildChart();
-      return Container(
-        height: 194,
-      );
+      return buildChart(finDetails.revenue);
   }
 }
