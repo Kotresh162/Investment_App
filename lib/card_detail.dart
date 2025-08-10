@@ -12,6 +12,7 @@ class TabCubit extends Cubit<SelectedTab> {
   void selectTab(SelectedTab tab) => emit(tab);
 }
 
+
 class CardDetail extends StatelessWidget {
   final CompanyDetail detail;
 
@@ -84,17 +85,9 @@ class CardDetail extends StatelessWidget {
   Widget _buildTabContent(BuildContext context,SelectedTab tab,CompanyDetail details) {
     switch (tab) {
       case SelectedTab.details:
-        return buildCustomLayout(context,details.issuerDetails);
+        return buildCustomLayout(context,details.issuerDetails,details.financials);
       case SelectedTab.prosCons:
         return prosConsCard(context,details.prosAndCons);
-        // return const Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     Text("Pros:\n- Fast\n- Efficient"),
-        //     SizedBox(height: 8),
-        //     Text("Cons:\n- Expensive\n- Complex"),
-        //   ],
-        // );
     }
   }
 
