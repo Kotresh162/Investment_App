@@ -46,11 +46,11 @@ class Homepagecontent extends StatefulWidget {
 }
 
 class _HomepagecontentState extends State<Homepagecontent> {
-  // final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
-  // void _onSearchChanged(String value) {
-  //   context.read<HomeBloc>().add(SearchItems(value));
-  // }
+  void _onSearchChanged(String value) {
+    context.read<CompanyBloc>().add(SearchItems(query: value));
+  }
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;    // Gives the width
@@ -70,8 +70,8 @@ class _HomepagecontentState extends State<Homepagecontent> {
           ),
           height: (42/874)*height,
           child: TextField(
-            // controller: _searchController,
-            // onChanged: _onSearchChanged,
+            controller: _searchController,
+            onChanged: _onSearchChanged,
             decoration: const InputDecoration(
               hintText: "Search by issuer Name or ISIN",
               hintStyle: TextStyle(fontSize: 12,color: Color(0XFF99A1AF)),
